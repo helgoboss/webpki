@@ -865,7 +865,12 @@ fn is_valid_dns_id(
     }
 
     if label_is_all_numeric {
-        return false; // Last label must not be all numeric.
+        // TODO Uncommenting this is a terrible workaround for
+        //  https://github.com/briansmith/webpki/issues/54. However, I absolutely need Flutter
+        //  to be able to connect with ReaLearn based on a LAN IP address. Without this, Flutter
+        //  will fail to connect with a TLSV1_ALERT_DECODE_ERROR. As soon as #54 is closed, we
+        //  should use the official webpki crate again.
+        // return false; // Last label must not be all numeric.
     }
 
     if is_wildcard {
